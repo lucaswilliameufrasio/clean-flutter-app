@@ -98,5 +98,18 @@ void main() {
 
       expect(response, null);
     });
+
+    test('Should return null if post returns 204', () async {
+      mockResponse(204, body: '');
+
+      final response = await sut.request(url: url, method: 'post');
+
+      verify(client.post(
+        any,
+        headers: anyNamed('headers'),
+      ));
+
+      expect(response, null);
+    });
   });
 }
