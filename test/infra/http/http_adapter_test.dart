@@ -22,11 +22,17 @@ class ClientSpy extends Mock implements Client {}
 
 void main() {
   group('post', () {
-    test('Should call post with correct values', () async {
-      final client = ClientSpy();
-      final sut = HttpAdapter(client);
-      final url = faker.internet.httpUrl();
+    HttpAdapter sut;
+    ClientSpy client;
+    String url;
 
+    setUp(() {
+      client = ClientSpy();
+      sut = HttpAdapter(client);
+      url = faker.internet.httpUrl();
+    });
+
+    test('Should call post with correct values', () async {
       await sut.request(url: url, method: 'post');
 
       verify(client.post(
