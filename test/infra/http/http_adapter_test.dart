@@ -55,11 +55,6 @@ void main() {
     test('Should return data if post returns 200', () async {
       final response = await sut.request(url: url, method: 'post');
 
-      verify(client.post(
-        any,
-        headers: anyNamed('headers'),
-      ));
-
       expect(response, {'any_key': 'any_value'});
     });
 
@@ -68,11 +63,6 @@ void main() {
 
       final response = await sut.request(url: url, method: 'post');
 
-      verify(client.post(
-        any,
-        headers: anyNamed('headers'),
-      ));
-
       expect(response, null);
     });
 
@@ -80,11 +70,6 @@ void main() {
       mockResponse(204, body: '');
 
       final response = await sut.request(url: url, method: 'post');
-
-      verify(client.post(
-        any,
-        headers: anyNamed('headers'),
-      ));
 
       expect(response, null);
     });
