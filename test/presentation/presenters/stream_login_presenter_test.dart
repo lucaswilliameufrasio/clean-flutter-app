@@ -78,7 +78,9 @@ void main() {
     sut.isFormValidStream
         .listen(expectAsync1((isValid) => expect(isValid, false)));
 
-    sut.validatePassword(email);
+    sut.validatePassword(password);
+    sut.validatePassword(password);
+  });
     sut.validatePassword(email);
   });
 }
