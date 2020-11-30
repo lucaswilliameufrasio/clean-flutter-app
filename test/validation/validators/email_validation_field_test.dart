@@ -20,4 +20,12 @@ void main() {
 
     expect(error, null);
   });
+
+  test('Should return null if email is null', () {
+    final sut = EmailValidation('any_field');
+
+    final error = sut.validate(null);
+
+    expect(error, null);
+  });
 }
