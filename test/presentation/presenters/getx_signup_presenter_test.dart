@@ -143,7 +143,8 @@ void main() {
   });
 
   test('Should emit null if validation succeeds', () {
-    sut.passwordErrorStream.listen(expectAsync1((error) => expect(error, null)));
+    sut.passwordErrorStream
+        .listen(expectAsync1((error) => expect(error, null)));
     sut.isFormValidStream
         .listen(expectAsync1((isValid) => expect(isValid, false)));
 
@@ -153,7 +154,9 @@ void main() {
 
   test('Should call Validation with correct passwordConfirmation', () {
     sut.validatePasswordConfirmation(passwordConfirmation);
-    verify(validation.validate(field: 'passwordConfirmation', value: passwordConfirmation)).called(1);
+    verify(validation.validate(
+            field: 'passwordConfirmation', value: passwordConfirmation))
+        .called(1);
   });
 
   test('Should emit invalidFieldError if passwordConfirmation is invalid', () {
@@ -181,11 +184,24 @@ void main() {
   });
 
   test('Should emit null if validation succeeds', () {
-    sut.passwordConfirmationErrorStream.listen(expectAsync1((error) => expect(error, null)));
+    sut.passwordConfirmationErrorStream
+        .listen(expectAsync1((error) => expect(error, null)));
     sut.isFormValidStream
         .listen(expectAsync1((isValid) => expect(isValid, false)));
 
     sut.validatePasswordConfirmation(passwordConfirmation);
+    sut.validatePasswordConfirmation(passwordConfirmation);
+  });
+
+  test('Should enable form button if all fields are invalid', () async {
+    expectLater(sut.isFormValidStream, emitsInOrder([false, true]));
+
+    sut.validateName(name);
+    await Future.delayed(Duration.zero);
+    sut.validateEmail(email);
+    await Future.delayed(Duration.zero);
+    sut.validatePassword(password);
+    await Future.delayed(Duration.zero);
     sut.validatePasswordConfirmation(passwordConfirmation);
   });
 }
