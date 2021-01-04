@@ -15,7 +15,7 @@ dependencies:
   http:
   provider:
   equatable:
-  get:
+  get: 3.4.2
   flutter_secure_storage:
 
 dev_dependencies:
