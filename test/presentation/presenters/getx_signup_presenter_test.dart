@@ -4,7 +4,7 @@ import 'package:test/test.dart';
 
 import 'package:ForDev/ui/helpers/errors/errors.dart';
 
-import 'package:ForDev/domain/usecases/add_account.dart';
+import 'package:ForDev/domain/usecases/usecases.dart';
 import 'package:ForDev/domain/entities/entities.dart';
 
 import 'package:ForDev/presentation/protocols/protocols.dart';
@@ -14,10 +14,13 @@ class ValidationSpy extends Mock implements Validation {}
 
 class AddAccountSpy extends Mock implements AddAccount {}
 
+class SaveCurrentAccountSpy extends Mock implements SaveCurrentAccount {}
+
 void main() {
   GetxSignUpPresenter sut;
   ValidationSpy validation;
   AddAccountSpy addAccount;
+  SaveCurrentAccountSpy saveCurrentAccount;
   String email;
   String name;
   String password;
@@ -41,9 +44,11 @@ void main() {
   setUp(() {
     validation = ValidationSpy();
     addAccount = AddAccountSpy();
+    saveCurrentAccount = SaveCurrentAccountSpy();
     sut = GetxSignUpPresenter(
       validation: validation,
       addAccount: addAccount,
+      saveCurrentAccount: saveCurrentAccount,
     );
     email = faker.internet.email();
     name = faker.person.name();
@@ -236,5 +241,14 @@ void main() {
       password: password,
       passwordConfirmation: passwordConfirmation,
     ))).called(1);
+  });
+
+  test('Should call SaveCurrentAccount with correct value', () async {
+    sut.validateEmail(email);
+    sut.validatePassword(password);
+
+    await sut.signUp();
+
+    verify(saveCurrentAccount.save(AccountEntity(token))).called(1);
   });
 }
