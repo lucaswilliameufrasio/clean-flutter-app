@@ -17,6 +17,7 @@ void main() {
   StreamController<UIError> emailErrorController;
   StreamController<UIError> passwordErrorController;
   StreamController<UIError> passwordConfirmationErrorController;
+  StreamController<UIError> mainErrorController;
   StreamController<bool> isFormValidController;
   StreamController<bool> isLoadingController;
 
@@ -25,6 +26,7 @@ void main() {
     emailErrorController = StreamController<UIError>();
     passwordErrorController = StreamController<UIError>();
     passwordConfirmationErrorController = StreamController<UIError>();
+    mainErrorController = StreamController<UIError>();
     isFormValidController = StreamController<bool>();
     isLoadingController = StreamController<bool>();
   }
@@ -38,6 +40,8 @@ void main() {
         .thenAnswer((_) => passwordErrorController.stream);
     when(presenter.passwordConfirmationErrorStream)
         .thenAnswer((_) => passwordConfirmationErrorController.stream);
+    when(presenter.mainErrorStream)
+        .thenAnswer((_) => mainErrorController.stream);
     when(presenter.isFormValidStream)
         .thenAnswer((_) => isFormValidController.stream);
     when(presenter.isLoadingStream)
@@ -49,6 +53,7 @@ void main() {
     emailErrorController.close();
     passwordErrorController.close();
     passwordConfirmationErrorController.close();
+    mainErrorController.close();
     isFormValidController.close();
     isLoadingController.close();
   }
@@ -210,7 +215,8 @@ void main() {
     );
   });
 
-  testWidgets('Should present passwordConfirmation error', (WidgetTester tester) async {
+  testWidgets('Should present passwordConfirmation error',
+      (WidgetTester tester) async {
     await loadPage(tester);
 
     passwordConfirmationErrorController.add(UIError.invalidField);
@@ -228,11 +234,11 @@ void main() {
 
     expect(
       find.descendant(
-          of: find.bySemanticsLabel('Confirmar senha'), matching: find.byType(Text)),
+          of: find.bySemanticsLabel('Confirmar senha'),
+          matching: find.byType(Text)),
       findsOneWidget,
     );
   });
-
 
   testWidgets('Should enable button if form is valid',
       (WidgetTester tester) async {
@@ -258,9 +264,7 @@ void main() {
     expect(button.onPressed, null);
   });
 
-
-  testWidgets('Should call signUp on form submit',
-      (WidgetTester tester) async {
+  testWidgets('Should call signUp on form submit', (WidgetTester tester) async {
     await loadPage(tester);
 
     isFormValidController.add(true);
@@ -272,7 +276,6 @@ void main() {
 
     verify(presenter.signUp()).called(1);
   });
-
 
   testWidgets('Should present loading', (WidgetTester tester) async {
     await loadPage(tester);
@@ -292,5 +295,26 @@ void main() {
     await tester.pump();
 
     expect(find.byType(CircularProgressIndicator), findsNothing);
+  });
+
+  testWidgets('Should present error message if signUp fails',
+      (WidgetTester tester) async {
+    await loadPage(tester);
+
+    mainErrorController.add(UIError.emailInUse);
+    await tester.pump();
+
+    expect(find.text('O email já está em uso.'), findsOneWidget);
+  });
+
+  testWidgets('Should present error message if signUp throws',
+      (WidgetTester tester) async {
+    await loadPage(tester);
+
+    mainErrorController.add(UIError.unexpected);
+    await tester.pump();
+
+    expect(find.text('Algo de errado aconteceu. Tente novamente em breve.'),
+        findsOneWidget);
   });
 }
