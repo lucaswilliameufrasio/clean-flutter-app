@@ -1,3 +1,4 @@
+import 'package:ForDev/ui/pages/pages.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 
@@ -28,20 +29,35 @@ class SurveysPage extends StatelessWidget {
             }
           });
 
-          return Container(
-            alignment: Alignment.center,
-            child: CarouselSlider(
-              options: CarouselOptions(
-                enlargeCenterPage: true,
-                aspectRatio: 1,
-              ),
-              items: [
-                SurveyItem(),
-                SurveyItem(),
-                SurveyItem(),
-              ],
-            ),
-          );
+          return StreamBuilder<List<SurveyViewModel>>(
+              stream: presenter.loadSurveysStream,
+              builder: (context, snapshot) {
+                if (snapshot.hasError) {
+                  return Column(
+                    children: [
+                      Text(snapshot.error),
+                      RaisedButton(
+                        child: Text(R.strings.reload),
+                        onPressed: null,
+                      )
+                    ],
+                  );
+                }
+                return Container(
+                  alignment: Alignment.center,
+                  child: CarouselSlider(
+                    options: CarouselOptions(
+                      enlargeCenterPage: true,
+                      aspectRatio: 1,
+                    ),
+                    items: [
+                      SurveyItem(),
+                      SurveyItem(),
+                      SurveyItem(),
+                    ],
+                  ),
+                );
+              });
         },
       ),
     );
