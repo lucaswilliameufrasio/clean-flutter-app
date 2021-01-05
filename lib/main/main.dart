@@ -24,12 +24,13 @@ class App extends StatelessWidget {
         GetPage(
             name: '/login', page: makeLoginPage, transition: Transition.fadeIn),
         GetPage(
-            name: '/signup', page: makeSignUpPage, transition: Transition.upToDown),
+            name: '/signup',
+            page: makeSignUpPage,
+            transition: Transition.upToDown),
         GetPage(
-          name: '/surveys',
-          page: () => Scaffold(body: Text('Enquetes')),
-          transition: Transition.fadeIn,
-        ),
+            name: '/surveys',
+            page: makeSurveysPage,
+            transition: Transition.fadeIn),
       ],
     );
   }
