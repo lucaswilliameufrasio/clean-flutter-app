@@ -26,7 +26,8 @@ void main() {
   });
 
   test('Should return null if value equal to min size', () {
-    expect(sut.validate({'any_field': faker.randomGenerator.string(5, min: 5)}), null);
+    expect(sut.validate({'any_field': faker.randomGenerator.string(5, min: 5)}),
+        null);
   });
 
   test('Should return null if value greater than min size', () {
