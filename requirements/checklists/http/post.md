@@ -1,5 +1,4 @@
-# HTTP
-
+# HTTP Get
 > ## Sucesso
 1. ✅ Request com verbo http válido (post)
 2. ✅ Passar nos headers o content type JSON
@@ -13,8 +12,6 @@
 3. ✅ Forbidden - 403
 4. ✅ Not found - 404
 5. ✅ Internal server error - 500
-
-
 > ## Exceção - Status code diferente dos citados acima
 1. ✅ Internal server error - 500
 
