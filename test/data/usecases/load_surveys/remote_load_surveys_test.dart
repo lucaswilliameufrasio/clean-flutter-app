@@ -8,7 +8,7 @@ import 'package:ForDev/domain/helpers/helpers.dart';
 import 'package:ForDev/data/usecases/usecases.dart';
 import 'package:ForDev/data/http/http.dart';
 
-class HttpClientSpy extends Mock implements HttpClient<List<Map>> {}
+class HttpClientSpy extends Mock implements HttpClient {}
 
 void main() {
   RemoteLoadSurveys sut;
