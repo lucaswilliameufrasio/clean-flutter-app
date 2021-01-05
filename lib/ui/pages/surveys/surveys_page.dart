@@ -43,20 +43,23 @@ class SurveysPage extends StatelessWidget {
                     ],
                   );
                 }
-                return Container(
-                  alignment: Alignment.center,
-                  child: CarouselSlider(
-                    options: CarouselOptions(
-                      enlargeCenterPage: true,
-                      aspectRatio: 1,
+
+                if (snapshot.hasData) {
+                  return Container(
+                    alignment: Alignment.center,
+                    child: CarouselSlider(
+                      options: CarouselOptions(
+                        enlargeCenterPage: true,
+                        aspectRatio: 1,
+                      ),
+                      items: snapshot.data
+                          .map((viewModel) => SurveyItem(viewModel))
+                          .toList(),
                     ),
-                    items: [
-                      SurveyItem(),
-                      SurveyItem(),
-                      SurveyItem(),
-                    ],
-                  ),
-                );
+                  );
+                }
+
+                return SizedBox(height: 0);
               });
         },
       ),
