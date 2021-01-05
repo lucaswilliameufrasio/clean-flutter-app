@@ -1,21 +1,9 @@
 import 'package:faker/faker.dart';
-import 'package:meta/meta.dart';
 import 'package:test/test.dart';
 
 import 'package:ForDev/presentation/protocols/protocols.dart';
 
-import 'package:ForDev/validation/protocols/protocols.dart';
-
-class MinLengthValidation implements FieldValidation {
-  final String field;
-  final int size;
-
-  MinLengthValidation({@required this.field, @required this.size});
-
-  ValidationError validate(String value) {
-    return value != null && value.length >= size ? null : ValidationError.invalidField;
-  }
-}
+import 'package:ForDev/validation/validators/validators.dart';
 
 void main() {
   MinLengthValidation sut;
@@ -33,7 +21,8 @@ void main() {
   });
 
   test('Should return error if value less than min size', () {
-    expect(sut.validate(faker.randomGenerator.string(4, min: 1)), ValidationError.invalidField);
+    expect(sut.validate(faker.randomGenerator.string(4, min: 1)),
+        ValidationError.invalidField);
   });
 
   test('Should return null if value equal to min size', () {
