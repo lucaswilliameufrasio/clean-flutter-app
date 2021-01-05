@@ -235,7 +235,7 @@ void main() {
     sut.validatePasswordConfirmation(passwordConfirmation);
   });
 
-  test('Should call Authentication with correct values', () async {
+  test('Should call AddAccount with correct values', () async {
     sut.validateName(name);
     sut.validateEmail(email);
     sut.validatePassword(password);
@@ -272,6 +272,17 @@ void main() {
     expectLater(sut.isLoadingStream, emitsInOrder([true, false]));
     sut.mainErrorStream
         .listen(expectAsync1((error) => expect(error, UIError.unexpected)));
+
+    await sut.signUp();
+  });
+
+  test('Should emit correct events on AddAccount success', () async {
+    sut.validateName(name);
+    sut.validateEmail(email);
+    sut.validatePassword(password);
+    sut.validatePasswordConfirmation(passwordConfirmation);
+
+    expectLater(sut.isLoadingStream, emits(true));
 
     await sut.signUp();
   });
