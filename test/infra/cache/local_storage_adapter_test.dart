@@ -30,6 +30,7 @@ void main() {
     test('Should localStorage with correct values', () async {
       await sut.save(key: key, value: value);
 
+      verify(localStorage.ready).called(1);
       verify(localStorage.deleteItem(key)).called(1);
       verify(localStorage.setItem(key, value)).called(1);
     });
@@ -54,7 +55,8 @@ void main() {
   group('delete', () {
     test('Should localStorage with correct values', () async {
       await sut.delete(key);
-
+      
+      verify(localStorage.ready).called(1);
       verify(localStorage.deleteItem(key)).called(1);
     });
 
@@ -86,6 +88,7 @@ void main() {
     test('Should localStorage with correct value', () async {
       await sut.fetch(key);
 
+      verify(localStorage.ready).called(1);
       verify(localStorage.getItem(key)).called(1);
     });
 
