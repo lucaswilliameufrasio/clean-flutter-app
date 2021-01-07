@@ -1,3 +1,4 @@
+import 'package:ForDev/data/cache/cache.dart';
 import 'package:ForDev/data/models/models.dart';
 import 'package:ForDev/domain/helpers/helpers.dart';
 import 'package:faker/faker.dart';
@@ -29,10 +30,6 @@ class LocalLoadSurveys {
 }
 
 class FetchCacheStorageSpy extends Mock implements FetchCacheStorage {}
-
-abstract class FetchCacheStorage {
-  Future<dynamic> fetch(String key);
-}
 
 void main() {
   LocalLoadSurveys sut;
