@@ -8,8 +8,9 @@ LoadSurveys makeRemoteLoadSurveys() => RemoteLoadSurveys(
       url: makeApiUrl('surveys'),
     );
 
-LoadSurveys makeLocalLoadSurveys() =>
-    LocalLoadSurveys(cacheStorage: makeLocalStorageAdapter());
+LoadSurveys makeLocalLoadSurveys() => LocalLoadSurveys(
+      cacheStorage: makeLocalStorageAdapter(),
+    );
 
 LoadSurveys makeRemoteLoadSurveysWithLocalFallback() =>
     RemoteLoadSurveysWithLocalFallback(
