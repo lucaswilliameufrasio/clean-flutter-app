@@ -4,12 +4,12 @@ class SurveyAnswerEntity {
   final String image;
   final String answer;
   final int percent;
-  final bool isCurrentAccountAnswer;
+  final bool isCurrentAnswer;
 
   SurveyAnswerEntity({
     this.image,
     @required this.answer,
     @required this.percent,
-    @required this.isCurrentAccountAnswer,
+    @required this.isCurrentAnswer,
   });
 }
