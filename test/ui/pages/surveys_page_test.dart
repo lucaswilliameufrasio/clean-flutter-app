@@ -3,10 +3,10 @@ import 'dart:async';
 import 'package:ForDev/ui/helpers/helpers.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:flutter/material.dart';
+import 'package:mockito/mockito.dart';
 import 'package:get/get.dart';
 
 import 'package:ForDev/ui/pages/pages.dart';
-import 'package:mockito/mockito.dart';
 
 class SurveysPresenterSpy extends Mock implements SurveysPresenter {}
 
