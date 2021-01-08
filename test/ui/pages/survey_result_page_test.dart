@@ -24,7 +24,8 @@ void main() {
   void mockStreams() {
     when(presenter.isLoadingStream)
         .thenAnswer((_) => isLoadingController.stream);
-    when(presenter.surveyResultStream).thenAnswer((_) => surveyResultController.stream);
+    when(presenter.surveyResultStream)
+        .thenAnswer((_) => surveyResultController.stream);
   }
 
   void closeStreams() {
@@ -95,5 +96,16 @@ void main() {
     expect(find.text('Algo de errado aconteceu. Tente novamente em breve.'),
         findsOneWidget);
     expect(find.text('Recarregar'), findsOneWidget);
+  });
+
+  testWidgets('Should call LoadSurveyResult on reload button tap',
+      (WidgetTester tester) async {
+    await loadPage(tester);
+
+    surveyResultController.addError(UIError.unexpected.description);
+    await tester.pump();
+    await tester.tap(find.text('Recarregar'));
+
+    verify(presenter.loadData()).called(2);
   });
 }
