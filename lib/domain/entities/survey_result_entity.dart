@@ -1,5 +1,6 @@
-import 'package:ForDev/domain/entities/entities.dart';
 import 'package:meta/meta.dart';
+
+import './survey_answer_entity.dart';
 
 class SurveyResultEntity {
   final String surveyId;
