@@ -25,6 +25,7 @@ class RemoteSurveyAnswerModel {
     }
 
     return RemoteSurveyAnswerModel(
+      image: json['image'],
       answer: json['answer'],
       isCurrentAccountAnswer: json['isCurrentAccountAnswer'],
       percent: json['percent'],

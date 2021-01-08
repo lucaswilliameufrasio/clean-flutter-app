@@ -32,6 +32,7 @@ class GetxSurveyResultPresenter implements SurveyResultPresenter {
         question: surveyResult.question,
         answers: surveyResult.answers
             .map((answer) => SurveyAnswerViewModel(
+                  image: answer.image,
                   answer: answer.answer,
                   percent: '${answer.percent}%',
                   isCurrentAnswer: answer.isCurrentAnswer,
