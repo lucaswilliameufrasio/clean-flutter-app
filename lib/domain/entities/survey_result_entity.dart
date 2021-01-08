@@ -1,11 +1,15 @@
+import 'package:equatable/equatable.dart';
 import 'package:meta/meta.dart';
 
 import './survey_answer_entity.dart';
 
-class SurveyResultEntity {
+class SurveyResultEntity extends Equatable {
   final String surveyId;
   final String question;
   final List<SurveyAnswerEntity> answers;
+
+  @override
+  List<Object> get props => ['surveyId', 'question', 'answers'];
 
   SurveyResultEntity({
     @required this.surveyId,
