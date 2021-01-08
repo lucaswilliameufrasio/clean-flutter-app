@@ -30,9 +30,10 @@ class AuthorizeHttpClientDecorator implements HttpClient {
         body: body,
         headers: authorizedHeaders,
       );
-    } on HttpError {
-      rethrow;
     } catch (error) {
+      if (error is HttpError && error != HttpError.forbidden) {
+        rethrow;
+      }
       await deleteSecureCacheStorage.deleteSecure('token');
       throw HttpError.forbidden;
     }
