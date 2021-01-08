@@ -1,16 +1,12 @@
-import 'package:equatable/equatable.dart';
 import 'package:meta/meta.dart';
 
-class SurveyAnswerEntity extends Equatable {
+class SurveyAnswerViewModel {
   final String image;
   final String answer;
-  final int percent;
+  final String percent;
   final bool isCurrentAnswer;
 
-  @override
-  List<Object> get props => ['image', 'answer', 'percent', 'isCurrentAnswer'];
-
-  SurveyAnswerEntity({
+  SurveyAnswerViewModel({
     this.image,
     @required this.answer,
     @required this.percent,
