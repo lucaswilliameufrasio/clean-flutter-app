@@ -5,5 +5,6 @@ import '../../factories.dart';
 SurveyResultPresenter makeGetxSurveyResultPresenter(String surveyId) =>
     GetxSurveyResultPresenter(
       loadSurveyResult: makeRemoteLoadSurveyResultWithLocalfallback(surveyId),
+      saveSurveyResult: makeRemoteSaveSurveyResult(surveyId),
       surveyId: surveyId,
     );
