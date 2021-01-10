@@ -7,11 +7,13 @@ import '../protocols/protocols.dart';
 class RequiredFieldValidation extends Equatable implements FieldValidation {
   final String field;
 
-  List<Object> get props => [field];
+  List get props => [field];
 
   RequiredFieldValidation(this.field);
 
   ValidationError validate(Map input) {
-    return input[field]?.isNotEmpty == true ? null : ValidationError.requiredField;
+    return input[field]?.isNotEmpty == true
+        ? null
+        : ValidationError.requiredField;
   }
 }

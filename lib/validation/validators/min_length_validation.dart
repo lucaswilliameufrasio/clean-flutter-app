@@ -9,7 +9,7 @@ class MinLengthValidation extends Equatable implements FieldValidation {
   final String field;
   final int size;
 
-  List<Object> get props => [field, size];
+  List get props => [field, size];
 
   MinLengthValidation({@required this.field, @required this.size});
 
