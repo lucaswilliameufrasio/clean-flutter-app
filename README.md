@@ -1,7 +1,7 @@
 # ForDev Flutter
 
-<div align="center" style="margin: 18px 0;">
-<img style="width: 180px" 
+<div align="center" style="width: '100%'; height: 400px; margin: 18px 0; display: flex; align-items: center; justify-content: center;">
+<img style="width: 240px; height: 180px;" 
 src="https://user-images.githubusercontent.com/34021576/106562432-0cdf3d80-6509-11eb-9004-556737c3cdb3.png" alt="4Dev Logo"
     />
 </div>
