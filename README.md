@@ -16,8 +16,8 @@ This project was built following along the training of [Rodrigo Manguinho on Ude
 Follow this instructions to install all requirements: [flutter.dev: Install](https://flutter.dev/docs/get-started/install)
 
 - Git
-- Dart: [version 2.10.5 or more](https://dart.dev/get-dart)
-- Flutter: [version 1.22.5 or more](https://flutter.dev/docs/get-started/install)
+- Dart: [version 2.10.5](https://dart.dev/get-dart)
+- Flutter: [version 1.22.5](https://flutter.dev/docs/get-started/install)
 - Android SDK
 
 ## Clone the repository
